@@ -22,14 +22,18 @@ monthly_challenges_dict = {
 # Create your views here.
 
 def index(request):
-    list_items = ""
     months_list = list(monthly_challenges_dict.keys())
-    for month in months_list:
-        capitalized_month = month.capitalize()
-        month_path = reverse("month-challenge", args=[month])
-        list_items += f'<li><a href="{month_path}"><h2>{capitalized_month}</h2></a></li>'
-    response_data = f"<h1>Choose the month for the daily challenge:</h1><hr><br><ul>{list_items}</ul>"
-    return HttpResponse(response_data)
+
+    return render(request,"challenges/index.html",{
+        "months": months_list,
+    })
+
+    # for month in months_list:
+    #     capitalized_month = month.capitalize()
+    #     month_path = reverse("month-challenge", args=[month])
+    #     list_items += f'<li><a href="{month_path}"><h2>{capitalized_month}</h2></a></li>'
+    # response_data = f"<h1>Choose the month for the daily challenge:</h1><hr><br><ul>{list_items}</ul>"
+    # return HttpResponse(response_data)
 
 
 def monthly_challenge_by_no(request, month):

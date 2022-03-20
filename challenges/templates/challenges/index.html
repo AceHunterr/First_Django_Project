@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Monthly Challenges</title>
 </head>
 <body>
-
+    <h1>Choose the month for the daily challenge:</h1>
+    <hr>
+    <br>
+    <ul>
+    {% for month in months %}
+        <li><h2><a href="{% url 'month-challenge' month %}">{{ month|title }}</a></h2></li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
