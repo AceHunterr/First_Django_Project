@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Monthly Challenges</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block my_title %}
+    Monthly Challenges
+{% endblock %}
+
+
+{% block content %}
+    {% include "challenges/includes/header.html" %}
     <h1>Choose the month for the daily challenge:</h1>
     <hr>
     <br>
@@ -13,5 +15,4 @@
         <li><h2><a href="{% url 'month-challenge' month %}">{{ month|title }}</a></h2></li>
     {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
