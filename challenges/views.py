@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse,Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.template.loader import render_to_string
 
@@ -49,13 +49,12 @@ def monthly_challenge_by_no(request, month):
 
 def monthly_challenge(request, month):
     try:
-
         challenge_text = monthly_challenges_dict[month]
         return render(request, "challenges/challenge.html", {
             "text": challenge_text,
             "month": month
         })
-        # response_data = render_to_string("challenges/challenge.html")
     except KeyError:
-        return HttpResponseNotFound('<h1>This month is not supported</h1>')
-    # return HttpResponse(response_data)
+        # response_data = render_to_string("404.html")
+        # return HttpResponseNotFound(response_data)
+        raise Http404()
